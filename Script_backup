@@ -1,4 +1,4 @@
-#El nostre script realitza còpies de seguretat completes els dies 1, 10 i 20 de cada mes i còpies de seguretat incrementals la resta de dies, a més el dia 1 de cada mes s’esborraran la resta de còpies del mes anterior abans de realitzar la nova per tal de no acumular massa informació.
+# El nostre script realitza còpies de seguretat completes els dies 1, 10 i 20 de cada mes i còpies de seguretat incrementals la resta de dies, a més el dia 1 de cada mes s’esborraran la resta de còpies del mes anterior abans de realitzar la nova per tal de no acumular massa informació.
 
 
 
