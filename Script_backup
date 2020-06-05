@@ -1,0 +1,44 @@
+#El nostre script realitza còpies de seguretat completes els dies 1, 10 i 20 de cada mes i còpies de seguretat incrementals la resta de dies, a més el dia 1 de cada mes s’esborraran la resta de còpies del mes anterior abans de realitzar la nova per tal de no acumular massa informació.
+
+
+
+
+
+#!/bin/bash
+#Recoge la fecha actual
+_fecha=$(date +"%Y_%m_%d")
+#Recoge el dia actual.
+diames=`date +%d`
+
+if (( 1 <= $diames && $diames <= 9 ));
+then
+    if [ «$diames» = «01» ]
+    then
+        rm /home/serverys/backups/backup3.snap
+        rm -r /home/serverys/backups/*.tar.gz
+        tar cvzf "/home/serverys/backups/full$_fecha.tar.gz" -g /home/serverys/backups/backup1.snap /home/serverys/Documentos
+    else
+        tar cvzf "/home/serverys/backups/inc$_fecha.tar.gz" -g /home/serverys/backups/backup1.snap /home/serverys/Documentos
+    fi
+elif (( 10 <= $diames && $diames <= 19 ));
+then
+    if [ «$diames» = «10» ]
+    then
+        rm /home/serverys/backups/backup1.snap
+        tar cvzf "/home/serverys/backups/full$_fecha.tar.gz" -g /home/serverys/backups/backup2.snap /home/serverys/Documentos
+    else
+        tar cvzf "/home/serverys/backups/inc$_fecha.tar.gz" -g /home/serverys/backups/backup2.snap /home/serverys/Documentos
+    fi
+elif (( 20 <= $diames && $diames <= 31 ));
+then
+    if [ «$diames» = «20» ]
+    then
+        rm /home/serverys/backups/backup2.snap
+        tar cvzf "/home/serverys/backups/full$_fecha.tar.gz" -g /home/serverys/backups/backup3.snap /home/serverys/Documentos
+    else
+        tar cvzf "/home/serverys/backups/inc$_fecha.tar.gz" -g /home/serverys/backups/backup3.snap /home/serverys/Documentos
+    fi
+else
+    echo Error del sistema;
+fi
+
